@@ -58,7 +58,11 @@ public class PresenterHome {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
-                //AddTela(new PresenterImagem());
+                try {
+                    AddTela(new PresenterManterImagem().getVmi());
+                } catch (Exception ex) {
+                    Logger.getLogger(PresenterHome.class.getName()).log(Level.SEVERE, null, ex);
+                }
             
             }
         });

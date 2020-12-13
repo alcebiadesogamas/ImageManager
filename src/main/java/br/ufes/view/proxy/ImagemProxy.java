@@ -18,13 +18,19 @@ public class ImagemProxy implements IProxyImagem {
         this.caminho = caminho;
     }
 
-    public ImagemProxy() {
+    public ImagemProxy(String caminho) {
+        this.caminho = caminho;
     }
 
+    public ImagemProxy() {
+    }
+    
+    
+    
     @Override
     public void request() {
         if(this.imgreal == null)
-            this.imgreal = new Imagem();
+            this.imgreal = new Imagem(this.caminho);
         imgreal.request();
     }
 

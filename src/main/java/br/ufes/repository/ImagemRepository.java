@@ -1,7 +1,6 @@
 package br.ufes.repository;
 
 import br.ufes.dao.ImagemDAO;
-import br.ufes.model.Imagem;
 import br.ufes.view.proxy.IProxyImagem;
 import br.ufes.view.proxy.ImagemProxy;
 import java.awt.image.BufferedImage;
@@ -16,13 +15,16 @@ import javax.imageio.ImageIO;
  * @author Alcebiades
  */
 public class ImagemRepository {
+
     private ImagemDAO imgDao;
-    public ImagemRepository(){
+
+    public ImagemRepository() {
         imgDao = new ImagemDAO();
     }
-    
-    public ArrayList<IProxyImagem> readFromDisk(String path) throws Exception{
-         File dir = new File(path);
+
+    public ArrayList<ImagemProxy> readFromDisk(String path) throws Exception {
+
+        File dir = new File(path);
 
         final String[] EXTENSIONS = new String[]{"jpg", "png"};
         // filter to identify images based on their extensions
@@ -38,9 +40,9 @@ public class ImagemRepository {
                 return (false);
             }
         };
-        
-        ArrayList<String> caminhos = new ArrayList<>();
-        Imagem imge = new Imagem();
+
+        ArrayList<ImagemProxy> imagens = new ArrayList<>();
+      
         if (!imgDao.FindAnyImage()) {
             if (dir.isDirectory()) { // make sure it's a directory
                 for (final File f : dir.listFiles(IMAGE_FILTER)) {
@@ -48,28 +50,27 @@ public class ImagemRepository {
 
                     try {
                         img = ImageIO.read(f);
-                        imge.setCaminho((dir + "/" + f.getName()).trim());
-                        caminhos.add((dir + "/" + f.getName()).trim());
-                        imgDao.AddImage(imge);
+                        imgDao.AddImage(new ImagemProxy((dir + "/" + f.getName()).trim()));
+                        imagens.add(new ImagemProxy((dir + "/" + f.getName()).trim()));
+
                     } catch (final IOException e) {
                         // handle errors here
                     }
+
                 }
             }
         }
-        
-       if (dir.isDirectory()) { // make sure it's a directory
-                for (final File f : dir.listFiles(IMAGE_FILTER)) {
-                    BufferedImage img = null;
 
-                    try {
-                        img = ImageIO.read(f);
-                        imge.setCaminho((dir + "/" + f.getName()).trim());
-                        caminhos.add((dir + "/" + f.getName()).trim());
-                    } catch (final IOException e) {
-                        // handle errors here
-                    }
-                }
-            }
+        return imagens;
+
+    }
+
+    public ArrayList<ImagemProxy> readFromDataBase() throws Exception {
+
+        ArrayList<ImagemProxy> imagens;
+
+        imagens = imgDao.findAll();
+
+        return imagens;
     }
 }

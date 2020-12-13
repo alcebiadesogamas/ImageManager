@@ -1,10 +1,13 @@
 package br.ufes.dao;
 
 import br.ufes.model.Imagem;
+import br.ufes.view.proxy.IProxyImagem;
+import br.ufes.view.proxy.ImagemProxy;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -12,23 +15,27 @@ import java.sql.SQLException;
  */
 public class ImagemDAO {
 
-    public void AddImage(Imagem image) throws Exception {
+    public void AddImage(ImagemProxy image) throws Exception {
         Connection conn = ConexaoFactory.getConexao();
 
         PreparedStatement ps = null;
-
+        ResultSet rs = null;
         if (image == null) {
             throw new Exception("O valor passado não pode ser nulo");
         }
         try {
+            ps = conn.prepareStatement("SELECT * FROM imagem where caminho = ?");
+            ps.setString(1, image.getCaminho());
+            rs = ps.executeQuery();
+            
+            if(!rs.next()){
+                String SQL = "INSERT INTO imagem (caminho) values (?);";
 
-            String SQL = "INSERT INTO imagem (caminho) values (?);";
-
-            ps = conn.prepareStatement(SQL);
-            ps.setString(2, image.getCaminho());
-
-            ps.executeUpdate();
-
+                ps = conn.prepareStatement(SQL);
+                ps.setString(2, image.getCaminho());
+            
+                ps.executeUpdate();
+            }
         } catch (SQLException sqle) {
             throw new Exception("Erro ao inserir dados " + sqle);
         } finally {
@@ -37,8 +44,8 @@ public class ImagemDAO {
     }
 
     public boolean FindAnyImage() throws Exception {
-        Connection conn  = ConexaoFactory.getConexao();
-        
+        Connection conn = ConexaoFactory.getConexao();
+
         PreparedStatement ps = null;
         boolean found = false;
         ResultSet rs = null;
@@ -57,7 +64,31 @@ public class ImagemDAO {
         return found;
     }
 
-    public void delete(Imagem image) throws Exception {
+    public ArrayList<ImagemProxy> findAll() throws Exception {
+        Connection conn = ConexaoFactory.getConexao();
+        ArrayList<ImagemProxy> list = new ArrayList<>();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            ps = conn.prepareStatement("select * from imagem");
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                String caminho = rs.getString(2);
+                list.add(new ImagemProxy(id, caminho));
+            }
+
+        } catch (SQLException sqle) {
+            throw new Exception(sqle);
+
+        } finally {
+            ConexaoFactory.fecharConexao(conn, ps, rs);
+        }
+        return list;
+    }
+
+    public void delete(ImagemProxy image) throws Exception {
         Connection conn = ConexaoFactory.getConexao();
 
         PreparedStatement ps = null;

@@ -12,23 +12,23 @@ public class Imagem implements IProxyImagem {
     private int id;
     private String caminho;
 
-    public Imagem(int id,String caminho, String descricao) {
+    public Imagem(int id,String caminho) {
         this.caminho = caminho;
         this.id = id;
-        try {
-            new ServiceImagem().getFromDisk(caminho);
-        } catch (Exception ex) {
-            System.err.println(ex.getMessage());
-        }
+
     }
 
+    public Imagem(String caminho) {
+        this.caminho = caminho;
+    }
+    
     public Imagem() {
     }
 
 
     @Override
     public void request() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     public int getId() {

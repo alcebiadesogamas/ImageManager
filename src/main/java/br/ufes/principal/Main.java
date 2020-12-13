@@ -1,15 +1,7 @@
 package br.ufes.principal;
 
-import br.ufes.dao.ImagemDAO;
-import br.ufes.model.Imagem;
+
 import br.ufes.presenter.PresenterHome;
-import br.ufes.view.proxy.IProxyImagem;
-import br.ufes.view.proxy.ImagemProxy;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FilenameFilter;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 
 /**
  *
@@ -25,6 +17,9 @@ public class Main {
 
 
         new PresenterHome().getVh().setVisible(true);
+        
+        //GerarJListImagens gl = new GerarJListImagens("Imagens");
+        
     }
 
 }
