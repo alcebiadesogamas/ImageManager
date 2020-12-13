@@ -5,7 +5,7 @@ package br.ufes.model;
  * @author Alcebiades
  */
 public class Permissao {
- 
+    
     private boolean excluir;
     private boolean compartilhar;
     private boolean vizualizar;
@@ -59,7 +59,5 @@ public class Permissao {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    
-    
-    
+        
 }

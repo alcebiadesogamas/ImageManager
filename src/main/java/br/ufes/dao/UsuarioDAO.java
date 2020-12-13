@@ -13,17 +13,12 @@ import java.util.ArrayList;
  */
 public class UsuarioDAO {
 
-    private Connection conn;
-
-    public UsuarioDAO() throws Exception {
-        try {
-            this.conn = ConexaoSQLITE.getConexao();
-        } catch (Exception e) {
-            throw new Exception("Erro: \n" + e.getMessage());
-        }
-    }
+  
 
     public void createUser(Usuario user, String password) throws Exception {
+        
+        Connection conn  = ConexaoFactory.getConexao();
+        
         PreparedStatement ps = null;
 
         if (user == null) {
@@ -48,11 +43,13 @@ public class UsuarioDAO {
         } catch (SQLException sqle) {
             throw new Exception("Erro ao inserir dados " + sqle);
         } finally {
-            ConexaoSQLITE.fecharConexao(conn, ps);
+            ConexaoFactory.fecharConexao(conn, ps);
         }
     }
 
     public boolean findUserByName(String nome) throws Exception {
+        Connection conn  = ConexaoFactory.getConexao();
+         
         PreparedStatement ps = null;
 
         ResultSet rs = null;
@@ -66,12 +63,13 @@ public class UsuarioDAO {
         } catch (SQLException sqle) {
             throw new Exception(sqle);
         } finally {
-            ConexaoSQLITE.fecharConexao(conn, ps, rs);
+            ConexaoFactory.fecharConexao(conn, ps, rs);
         }
 
     }
     
      public boolean findAnyUser() throws Exception {
+         Connection conn  = ConexaoFactory.getConexao();
         PreparedStatement ps = null;
 
         ResultSet rs = null;
@@ -85,12 +83,13 @@ public class UsuarioDAO {
         } catch (SQLException sqle) {
             throw new Exception(sqle);
         } finally {
-            ConexaoSQLITE.fecharConexao(conn, ps, rs);
+            ConexaoFactory.fecharConexao(conn, ps, rs);
         }
 
     }
 
     public boolean findUserByNameAndPassword(String username, String pass) throws Exception {
+         Connection conn  = ConexaoFactory.getConexao();
         PreparedStatement ps = null;
         boolean found = false;
         ResultSet rs = null;
@@ -98,7 +97,6 @@ public class UsuarioDAO {
             ps = conn.prepareStatement("select * from usuario where nome = ? and senha = ?");
             ps.setString(1, username);
             ps.setString(2, pass);
-            System.out.println(pass);
             rs = ps.executeQuery();
 
             found = rs.next(); //returns true or false if exists.
@@ -107,12 +105,14 @@ public class UsuarioDAO {
             throw new Exception(sqle);
 
         } finally {
-            ConexaoSQLITE.fecharConexao(conn, ps, rs);
+            ConexaoFactory.fecharConexao(conn, ps, rs);
         }
         return found;
     }
 
     public ArrayList findAll() throws Exception {
+         Connection conn  = ConexaoFactory.getConexao();
+        
         PreparedStatement ps = null;
 
         ResultSet rs = null;
@@ -133,11 +133,13 @@ public class UsuarioDAO {
         } catch (SQLException sqle) {
             throw new Exception(sqle);
         } finally {
-            ConexaoSQLITE.fecharConexao(conn, ps, rs);
+            ConexaoFactory.fecharConexao(conn, ps, rs);
         }
     }
 
     public void delete(Usuario user) throws Exception {
+         Connection conn  = ConexaoFactory.getConexao();
+        
         PreparedStatement ps = null;
 
         if (user == null) {
@@ -152,7 +154,7 @@ public class UsuarioDAO {
         } catch (SQLException sqle) {
             throw new Exception("Erro ao excluir dados:" + sqle);
         } finally {
-            ConexaoSQLITE.fecharConexao(conn, ps);
+            ConexaoFactory.fecharConexao(conn, ps);
         }
     }
 }

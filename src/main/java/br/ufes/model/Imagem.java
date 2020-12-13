@@ -7,13 +7,17 @@ import java.util.ArrayList;
  * @author Alcebiades
  */
 public class Imagem {
+    private int id;
     private String caminho;
     private String descricao;
-    private ArrayList<Permissao> permissoes = new ArrayList<>();
+   // private ArrayList<Permissao> permissoes = new ArrayList<>();
     
     public Imagem(String caminho, String descricao) {
         this.caminho = caminho;
         this.descricao = descricao;
+    }
+
+    public Imagem() {
     }
 
     public String getCaminho() {
@@ -32,13 +36,20 @@ public class Imagem {
         this.descricao = descricao;
     }
 
-    public ArrayList<Permissao> getPermissoes() {
+   /* public ArrayList<Permissao> getPermissoes() {
         return permissoes;
     }
 
     public void setPermissoes(ArrayList<Permissao> permissoes) {
         this.permissoes = permissoes;
+    }*/
+
+    public int getId() {
+        return id;
     }
-    
+
+    public void setId(int id) {
+        this.id = id;
+    }
     
 }

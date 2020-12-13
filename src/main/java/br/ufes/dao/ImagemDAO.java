@@ -3,6 +3,7 @@ package br.ufes.dao;
 import br.ufes.model.Imagem;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -10,41 +11,71 @@ import java.sql.SQLException;
  * @author Alcebiades
  */
 public class ImagemDAO {
-    private Connection conn;
 
-    public ImagemDAO() throws Exception {
-        try {
-            this.conn = ConexaoSQLITE.getConexao();
-        } catch (Exception e) {
-            throw new Exception("Erro: \n" + e.getMessage());
-        }
-    }
-    
-    public void createUser(Imagem image) throws Exception {
+    public void AddImage(Imagem image) throws Exception {
+        Connection conn = ConexaoFactory.getConexao();
+
         PreparedStatement ps = null;
 
         if (image == null) {
             throw new Exception("O valor passado não pode ser nulo");
         }
         try {
-                      
-            String SQL = "INSERT INTO imagem (descricao,caminho) values (?, ?);";
+
+            String SQL = "INSERT INTO imagem (descricao, caminho) values (?, ?);";
 
             ps = conn.prepareStatement(SQL);
-            ps.setString(1, user.getNome());
-            ps.setString(2, password);
-            
-            if(user.isAdmin())
-                ps.setBoolean(3, true);
-            else
-                ps.setBoolean(3, false);
-            
+            ps.setString(1, image.getDescricao());
+            ps.setString(2, image.getCaminho());
+
             ps.executeUpdate();
-            
+
         } catch (SQLException sqle) {
             throw new Exception("Erro ao inserir dados " + sqle);
         } finally {
-            ConexaoSQLITE.fecharConexao(conn, ps);
+            ConexaoFactory.fecharConexao(conn, ps);
+        }
+    }
+
+    public boolean FindAnyImage() throws Exception {
+        Connection conn  = ConexaoFactory.getConexao();
+        
+        PreparedStatement ps = null;
+        boolean found = false;
+        ResultSet rs = null;
+        try {
+            ps = conn.prepareStatement("select * from imagem");
+            rs = ps.executeQuery();
+
+            found = rs.next(); //returns true or false if exists.
+
+        } catch (SQLException sqle) {
+            throw new Exception(sqle);
+
+        } finally {
+            ConexaoFactory.fecharConexao(conn, ps, rs);
+        }
+        return found;
+    }
+
+    public void delete(Imagem image) throws Exception {
+        Connection conn = ConexaoFactory.getConexao();
+
+        PreparedStatement ps = null;
+
+        if (image == null) {
+            throw new Exception("O valor passado não pode ser nulo");
+        }
+        try {
+            //delete all notifications and permissions
+            ps = conn.prepareStatement("delete from imagem where caminho = ?");
+            ps.setString(1, image.getCaminho());
+            ps.executeUpdate();
+
+        } catch (SQLException sqle) {
+            throw new Exception("Erro ao excluir dados:" + sqle);
+        } finally {
+            ConexaoFactory.fecharConexao(conn, ps);
         }
     }
 }

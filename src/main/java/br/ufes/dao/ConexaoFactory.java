@@ -11,7 +11,7 @@ import java.sql.Statement;
  *
  * @author Alcebiades
  */
-public class ConexaoSQLITE {
+public class ConexaoFactory {
 
     public static Connection getConexao() {
         Connection con = null;
