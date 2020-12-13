@@ -1,23 +1,42 @@
 package br.ufes.model;
 
-import java.util.ArrayList;
+import br.ufes.service.ServiceImagem;
+import br.ufes.view.proxy.IProxyImagem;
 
 /**
  *
  * @author Alcebiades
  */
-public class Imagem {
+public class Imagem implements IProxyImagem {
+
     private int id;
     private String caminho;
-    private String descricao;
-   // private ArrayList<Permissao> permissoes = new ArrayList<>();
-    
-    public Imagem(String caminho, String descricao) {
+
+    public Imagem(int id,String caminho, String descricao) {
         this.caminho = caminho;
-        this.descricao = descricao;
+        this.id = id;
+        try {
+            new ServiceImagem().getFromDisk(caminho);
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+        }
     }
 
     public Imagem() {
+    }
+
+
+    @Override
+    public void request() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getCaminho() {
@@ -28,28 +47,4 @@ public class Imagem {
         this.caminho = caminho;
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-   /* public ArrayList<Permissao> getPermissoes() {
-        return permissoes;
-    }
-
-    public void setPermissoes(ArrayList<Permissao> permissoes) {
-        this.permissoes = permissoes;
-    }*/
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-    
 }

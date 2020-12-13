@@ -1,6 +1,5 @@
 package br.ufes.presenter;
 
-import br.ufes.service.ServiceUsuario;
 import br.ufes.view.ViewHome;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -55,7 +54,14 @@ public class PresenterHome {
             }
         });
         
-
+        this.vh.getMiConsultarImagem().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                //AddTela(new PresenterImagem());
+            
+            }
+        });
         vh.setVisible(true);
     
     }

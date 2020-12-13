@@ -22,10 +22,9 @@ public class ImagemDAO {
         }
         try {
 
-            String SQL = "INSERT INTO imagem (descricao, caminho) values (?, ?);";
+            String SQL = "INSERT INTO imagem (caminho) values (?);";
 
             ps = conn.prepareStatement(SQL);
-            ps.setString(1, image.getDescricao());
             ps.setString(2, image.getCaminho());
 
             ps.executeUpdate();

@@ -1,7 +1,12 @@
 package br.ufes.presenter;
 
+import br.ufes.singleton.SingletonImageManipulator;
 import br.ufes.view.ViewManterImagens;
-import java.awt.GridLayout;
+import br.ufes.view.proxy.IProxyImagem;
+import br.ufes.view.proxy.ImagemProxy;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -9,26 +14,17 @@ import java.awt.GridLayout;
  */
 public class PresenterImagem {
 
-    private ViewManterImagens mi;
+    private ViewManterImagens vmi;
+    private ArrayList<IProxyImagem> imagens = new ArrayList<>();
+    
+    private BufferedImage image;
+    private SingletonImageManipulator sim;
 
     public PresenterImagem() {
-        this.mi = new ViewManterImagens();
-
-        mi.setLayout(new GridLayout(3, 4, 5, 5));
-
-        mi.add(mi.getImagem1());
-        mi.add(mi.getImagem2());
-        mi.add(mi.getImagem3());
-        mi.add(mi.getImagem4());
-        mi.add(mi.getImagem5());
-        mi.add(mi.getImagem6());
-        mi.add(mi.getImagem7());
-        mi.add(mi.getImagem8());
-        mi.add(mi.getImagem9());
-        mi.add(mi.getImagem10());
-        mi.add(mi.getImagem11());
-        mi.add(mi.getImagem12());
-
+        this.vmi = new ViewManterImagens();
+        
+        sim.setImagemDimensao(caminhoImg,104, 104)
+        this.vmi.getjLabel1().setIcon(new ImageIcon());
     }
 
 }
