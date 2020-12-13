@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * @author Alcebiades
  */
 public class UsuarioDAO {
+
     private Connection conn;
 
     public UsuarioDAO() throws Exception {
@@ -21,7 +22,7 @@ public class UsuarioDAO {
             throw new Exception("Erro: \n" + e.getMessage());
         }
     }
-    
+
     public void createUser(Usuario user, String password) throws Exception {
         PreparedStatement ps = null;
 
@@ -29,28 +30,29 @@ public class UsuarioDAO {
             throw new Exception("O valor passado não pode ser nulo");
         }
         try {
-                      
+
             String SQL = "INSERT INTO usuario (nome, senha, admin) values (?, ?, ?);";
 
             ps = conn.prepareStatement(SQL);
             ps.setString(1, user.getNome());
             ps.setString(2, password);
-            
-            if(user.isAdmin())
+
+            if (user.isAdmin()) {
                 ps.setBoolean(3, true);
-            else
+            } else {
                 ps.setBoolean(3, false);
-            
+            }
+
             ps.executeUpdate();
-            
+
         } catch (SQLException sqle) {
             throw new Exception("Erro ao inserir dados " + sqle);
         } finally {
             ConexaoSQLITE.fecharConexao(conn, ps);
         }
     }
-    
-     public boolean findUserByName(String nome) throws Exception {
+
+    public boolean findUserByName(String nome) throws Exception {
         PreparedStatement ps = null;
 
         ResultSet rs = null;
@@ -58,18 +60,37 @@ public class UsuarioDAO {
             ps = conn.prepareStatement("select * from usuario where nome = ?");
             ps.setString(1, nome);
             rs = ps.executeQuery();
-            
-                return !rs.next(); //if not exists a username like nome it returns true.
-                        
+
+            return !rs.next(); //if not exists a username like nome it returns true.
+
         } catch (SQLException sqle) {
             throw new Exception(sqle);
         } finally {
             ConexaoSQLITE.fecharConexao(conn, ps, rs);
         }
-        
+
     }
     
-    public boolean findUserByNameAndPassword(String username, String pass ) throws Exception {
+     public boolean findAnyUser() throws Exception {
+        PreparedStatement ps = null;
+
+        ResultSet rs = null;
+        try {
+            ps = conn.prepareStatement("select * from usuario");
+            
+            rs = ps.executeQuery();
+
+            return rs.next(); //if there is some user it returns true.
+
+        } catch (SQLException sqle) {
+            throw new Exception(sqle);
+        } finally {
+            ConexaoSQLITE.fecharConexao(conn, ps, rs);
+        }
+
+    }
+
+    public boolean findUserByNameAndPassword(String username, String pass) throws Exception {
         PreparedStatement ps = null;
         boolean found = false;
         ResultSet rs = null;
@@ -79,18 +100,18 @@ public class UsuarioDAO {
             ps.setString(2, pass);
             System.out.println(pass);
             rs = ps.executeQuery();
-            
+
             found = rs.next(); //returns true or false if exists.
-           
+
         } catch (SQLException sqle) {
             throw new Exception(sqle);
-            
+
         } finally {
             ConexaoSQLITE.fecharConexao(conn, ps, rs);
         }
         return found;
     }
-     
+
     public ArrayList findAll() throws Exception {
         PreparedStatement ps = null;
 
@@ -115,7 +136,7 @@ public class UsuarioDAO {
             ConexaoSQLITE.fecharConexao(conn, ps, rs);
         }
     }
-    
+
     public void delete(Usuario user) throws Exception {
         PreparedStatement ps = null;
 
@@ -127,13 +148,11 @@ public class UsuarioDAO {
             ps = conn.prepareStatement("delete from usuario where idusuario = ?");
             ps.setInt(1, user.getId());
             ps.executeUpdate();
-            
+
         } catch (SQLException sqle) {
             throw new Exception("Erro ao excluir dados:" + sqle);
         } finally {
             ConexaoSQLITE.fecharConexao(conn, ps);
         }
-        
-        
     }
 }

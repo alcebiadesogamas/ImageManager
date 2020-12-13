@@ -5,6 +5,8 @@ import br.ufes.service.ServiceUsuario;
 import br.ufes.view.ViewCadastro;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,14 +18,21 @@ public class PresenterCadastroUsuario {
     private ServiceUsuario serviceUser;
     private Usuario user;
     
-    public PresenterCadastroUsuario() throws Exception {
+    public PresenterCadastroUsuario(PresenterHome ph) throws Exception {
         vc = new ViewCadastro();
         serviceUser = new ServiceUsuario();
         Usuario user = new Usuario();
-        
+        if(serviceUser.findAnyUser()){
+            
+        }
         vc.getBtnCancelar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                try {
+                    ph.AddTela(new PresenterLogin(ph).getVl());
+                } catch (Exception ex) {
+                    Logger.getLogger(PresenterCadastroUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 vc.dispose();
             }
         });
@@ -35,9 +44,13 @@ public class PresenterCadastroUsuario {
                     
                     if(vc.getRbAdmin().isSelected())
                         user.setAdmin(true);
-                    if(serviceUser.createUser(user, new String(vc.getPfSenha().getPassword())))
+                    user.setNome(vc.getTfNome().getText());
+                    if(serviceUser.createUser(user, new String(vc.getPfSenha().getPassword()))){
                         JOptionPane.showMessageDialog(null,"Usuario Criado Com Sucesso!");
-                    else{
+                        vc.dispose();
+                        ph.getVh().getMiConsultarImagem().setVisible(true);
+                        ph.getVh().getMiConsultarUsuario().setVisible(true);
+                    }else{
                         JOptionPane.showMessageDialog(null,"Usuario Existente");
                     }
                 }else{
@@ -54,4 +67,10 @@ public class PresenterCadastroUsuario {
      public boolean isValidPassword(String pass) {
         return (pass.length() >= 4 && pass.length() <= 12);
     }
+
+    public ViewCadastro getVc() {
+        return vc;
+    }
+     
+    
 }

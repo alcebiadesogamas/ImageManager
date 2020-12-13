@@ -8,6 +8,8 @@ import br.ufes.view.ViewLogin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,15 +22,22 @@ public class PresenterLogin {
     private ServiceUsuario userservice;//service
     private ViewLogin vl;//view
 
-    public PresenterLogin() throws Exception {
+    public PresenterLogin(PresenterHome ph) throws Exception {
         this.vl = new ViewLogin();
         this.user = new Usuario();
-        this. userservice = new ServiceUsuario();
-        
+        this.userservice = new ServiceUsuario();
+        if(userservice.findAnyUser()){
+            vl.getBtnCadastrar().setVisible(false);
+        }
         this.vl.getBtnCadastrar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new ViewCadastro().setVisible(true);
+                try {
+                    ph.AddTela(new PresenterCadastroUsuario(ph).getVc());
+
+                } catch (Exception ex) {
+                    Logger.getLogger(PresenterLogin.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 vl.dispose();
 
             }
@@ -38,14 +47,13 @@ public class PresenterLogin {
             @Override
             public void actionPerformed(ActionEvent e) {
                 user.setNome(vl.getTfNome().getText());
-                
-                user.setSenha(new String(vl.getPfSenha().getPassword())); 
+                user.setSenha(new String(vl.getPfSenha().getPassword()));
                 if (isValidPassword(new String(vl.getPfSenha().getPassword()))) {
                     if (userservice.loginValidation(user, new String(vl.getPfSenha().getPassword()))) {
-                        
-                        
+                        ph.getVh().getMiConsultarImagem().setVisible(true);
+                        ph.getVh().getMiConsultarUsuario().setVisible(true);
                         vl.dispose();
-                        
+
                     } else {
                         JOptionPane.showMessageDialog(null, "Usuario ou senha incoreto(s)");
                     }
@@ -66,6 +74,5 @@ public class PresenterLogin {
     public ViewLogin getVl() {
         return vl;
     }
-    
-    
+
 }

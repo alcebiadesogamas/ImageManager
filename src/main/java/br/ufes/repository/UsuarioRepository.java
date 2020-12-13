@@ -44,4 +44,8 @@ public class UsuarioRepository {
         }
         return false;
     }
+    
+    public boolean findAnyUser() throws Exception{
+       return udao.findAnyUser();
+    }
 }

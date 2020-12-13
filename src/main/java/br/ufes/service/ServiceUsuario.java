@@ -16,11 +16,16 @@ public class ServiceUsuario {
     }
 
     public boolean loginValidation(Usuario user, String password) {
-                    
+        if(userRepo.userNameAlreadyExists(user)){
+            return false;
+        }
         return userRepo.findByLoginandPassword(user, password);
     }
     public boolean createUser(Usuario user, String password){
         return userRepo.createUser(user, password);
     }
     
+    public boolean findAnyUser() throws Exception{
+        return userRepo.findAnyUser();
+    }
 }

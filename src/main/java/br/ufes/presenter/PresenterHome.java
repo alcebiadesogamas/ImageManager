@@ -22,11 +22,9 @@ public class PresenterHome {
     public PresenterHome() {
         this.vh = new ViewHome();
         
-        vh.getJdpPrincipal();
         try {
-            vh.getJdpPrincipal().add(new PresenterLogin().getVl());
+            this.AddTela(new PresenterLogin(this).getVl());
             vh.getMiConsultarImagem().setVisible(false);
-            
             vh.getMiConsultarUsuario().setVisible(false);
             
         } catch (Exception ex) {
@@ -60,6 +58,14 @@ public class PresenterHome {
 
         vh.setVisible(true);
     
+    }
+
+    public ViewHome getVh() {
+        return vh;
+    }
+    
+    public void AddTela(javax.swing.JInternalFrame jf){
+        this.vh.getJdpPrincipal().add(jf);
     }
 
 }
