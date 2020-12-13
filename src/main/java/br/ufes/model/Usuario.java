@@ -1,5 +1,7 @@
 package br.ufes.model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Alcebiades
@@ -8,8 +10,20 @@ public class Usuario {
     private int id;
     private String nome;
     private String senha;
-    private boolean admin;
+    private boolean admin = false;
+    private ArrayList<Permissao> permissoes = new ArrayList<>();
 
+    public Usuario(int id, String nome, String senha, boolean admin) {
+        this.id = id;
+        this.nome = nome;
+        this.senha = senha;
+        this.admin = admin;
+    }
+
+    public Usuario() {
+        
+    }  
+    
     public String getNome() {
         return nome;
     }
@@ -17,11 +31,7 @@ public class Usuario {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    public String getSenha() {
-        return senha;
-    }
-
+    
     public void setSenha(String senha) {
         this.senha = senha;
     }
@@ -41,5 +51,14 @@ public class Usuario {
     public void setId(int id) {
         this.id = id;
     }
+
+    public ArrayList<Permissao> getPermissoes() {
+        return permissoes;
+    }
+
+    public void setPermissoes(ArrayList<Permissao> permissoes) {
+        this.permissoes = permissoes;
+    }
+    
     
 }

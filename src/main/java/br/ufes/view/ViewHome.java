@@ -1,20 +1,20 @@
 package br.ufes.view;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import javax.swing.JOptionPane;
+import javax.swing.JDesktopPane;
+import javax.swing.JMenuItem;
 
 /**
  *
  * @author Alcebiades
  */
-public class ViewHome extends javax.swing.JInternalFrame {
+public class ViewHome extends javax.swing.JFrame {
 
     /**
      * Creates new form ViewHome
      */
     public ViewHome() {
         initComponents();
+      
     }
 
     /**
@@ -26,107 +26,139 @@ public class ViewHome extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuBar3 = new javax.swing.JMenuBar();
+        jdpPrincipal = new javax.swing.JDesktopPane();
+        jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         miConsultarUsuario = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         miSair = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        miConsultarImagem = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        miSobre = new javax.swing.JMenuItem();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.GroupLayout jdpPrincipalLayout = new javax.swing.GroupLayout(jdpPrincipal);
+        jdpPrincipal.setLayout(jdpPrincipalLayout);
+        jdpPrincipalLayout.setHorizontalGroup(
+            jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 719, Short.MAX_VALUE)
+        );
+        jdpPrincipalLayout.setVerticalGroup(
+            jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 450, Short.MAX_VALUE)
+        );
 
         jMenu1.setText("Usuario");
 
         miConsultarUsuario.setText("Consultar");
-        miConsultarUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miConsultarUsuarioActionPerformed(evt);
-            }
-        });
         jMenu1.add(miConsultarUsuario);
         jMenu1.add(jSeparator1);
 
         miSair.setText("Sair");
-        miSair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miSairActionPerformed(evt);
-            }
-        });
         jMenu1.add(miSair);
 
-        jMenuBar3.add(jMenu1);
+        jMenuBar1.add(jMenu1);
 
-        jMenu3.setText("Imagens");
+        jMenu2.setText("Imagem");
 
-        jMenuItem4.setText("Consultar");
-        jMenu3.add(jMenuItem4);
+        miConsultarImagem.setText("Consultar");
+        jMenu2.add(miConsultarImagem);
 
-        jMenuBar3.add(jMenu3);
+        jMenuBar1.add(jMenu2);
 
-        jMenu2.setText("Ajuda");
+        jMenu3.setText("Ajuda");
 
-        jMenuItem6.setText("Sobre");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem6);
+        miSobre.setText("sobre");
+        jMenu3.add(miSobre);
 
-        jMenuBar3.add(jMenu2);
+        jMenuBar1.add(jMenu3);
 
-        setJMenuBar(jMenuBar3);
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 852, Short.MAX_VALUE)
+            .addComponent(jdpPrincipal)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 552, Short.MAX_VALUE)
+            .addComponent(jdpPrincipal)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(ViewHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(ViewHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(ViewHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(ViewHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
 
-         SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
-        Date a = new Date();
-        JOptionPane.showMessageDialog(null, "Alcebiades Lopes Gamas\n"+
-                f.format(a.getTime()) , "Autor",1) ;
-        
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
-
-    private void miSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSairActionPerformed
-      this.dispose();
-    }//GEN-LAST:event_miSairActionPerformed
-
-    private void miConsultarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miConsultarUsuarioActionPerformed
-        
-        new ViewManterUsuario().setVisible(true);
-        
-    }//GEN-LAST:event_miConsultarUsuarioActionPerformed
-
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ViewHome().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu Usuario;
-    private javax.swing.JMenu Usuario1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuBar jMenuBar3;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JDesktopPane jdpPrincipal;
+    private javax.swing.JMenuItem miConsultarImagem;
     private javax.swing.JMenuItem miConsultarUsuario;
     private javax.swing.JMenuItem miSair;
+    private javax.swing.JMenuItem miSobre;
     // End of variables declaration//GEN-END:variables
+
+    public JDesktopPane getJdpPrincipal() {
+        return jdpPrincipal;
+    }
+
+    public JMenuItem getMiConsultarImagem() {
+        return miConsultarImagem;
+    }
+
+    public JMenuItem getMiConsultarUsuario() {
+        return miConsultarUsuario;
+    }
+
+    public JMenuItem getMiSair() {
+        return miSair;
+    }
+
+    public JMenuItem getMiSobre() {
+        return miSobre;
+    }
+
+    
+    
 }

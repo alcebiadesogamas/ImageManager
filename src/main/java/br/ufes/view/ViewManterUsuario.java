@@ -1,44 +1,20 @@
 package br.ufes.view;
 
-import br.ufes.dao.UsuarioDAO;
-import br.ufes.model.Usuario;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
  * @author Alcebiades
  */
-public class ViewManterUsuario extends javax.swing.JFrame {
-
-    DefaultTableModel modelo;
+public class ViewManterUsuario extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form ManterUsuario
+     * Creates new form ViewManterUsuario
      */
     public ViewManterUsuario() {
         initComponents();
-        modelo = (DefaultTableModel) jtUsuarios.getModel();
-        ArrayList<Usuario> usuarios;
-        try {
-            usuarios = new UsuarioDAO().findAll();
-
-            String aux = "não";
-            for (Usuario u : usuarios) {
-                if (u.isAdmin()) {
-                    aux = "sim";
-                }
-                modelo.addRow(new Object[]{
-                    u.getNome(),
-                    aux
-                });
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(ViewManterUsuario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
     }
 
     /**
@@ -50,153 +26,151 @@ public class ViewManterUsuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton3 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        tfBuscarNome = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtUsuarios = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        tfBuscarNome = new javax.swing.JTextField();
-        btnBuscar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        btnExcluirUsuario = new javax.swing.JButton();
+        btnNovoUsuario = new javax.swing.JButton();
+        btnSair = new javax.swing.JButton();
+        btnBuscarUsuario = new javax.swing.JButton();
 
-        jButton3.setText("Cancelar");
+        jLabel1.setText("Nome:");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        tfBuscarNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfBuscarNomeActionPerformed(evt);
+            }
+        });
 
         jtUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nome", "Administrador"
+                "Usuario", "Administrador", "Excluir", "Vizualizar", "Compartilhar"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
+        jtUsuarios.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jtUsuarios);
         if (jtUsuarios.getColumnModel().getColumnCount() > 0) {
-            jtUsuarios.getColumnModel().getColumn(0).setPreferredWidth(200);
-            jtUsuarios.getColumnModel().getColumn(1).setPreferredWidth(20);
+            jtUsuarios.getColumnModel().getColumn(0).setResizable(false);
+            jtUsuarios.getColumnModel().getColumn(1).setResizable(false);
+            jtUsuarios.getColumnModel().getColumn(2).setResizable(false);
+            jtUsuarios.getColumnModel().getColumn(3).setResizable(false);
+            jtUsuarios.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        jButton1.setText("Novo Usuario");
+        btnExcluirUsuario.setText("Excluir");
 
-        jButton2.setText("Excluir");
+        btnNovoUsuario.setText("Novo");
 
-        jButton4.setText("Cancelar");
+        btnSair.setText("Sair");
 
-        jButton5.setText("Editar");
-
-        btnBuscar.setText("Buscar");
-
-        jLabel1.setText("Nome:");
+        btnBuscarUsuario.setText("Buscar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 591, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
-                            .addComponent(jButton1)
-                            .addComponent(jButton4)
-                            .addComponent(jButton5)))
+                            .addComponent(btnExcluirUsuario)
+                            .addComponent(btnNovoUsuario)
+                            .addComponent(btnSair)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tfBuscarNome, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnBuscar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(tfBuscarNome, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBuscarUsuario)))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
                     .addComponent(tfBuscarNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar)
-                    .addComponent(jLabel1))
+                    .addComponent(btnBuscarUsuario))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton5)
-                        .addGap(123, 123, 123)
-                        .addComponent(jButton4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(19, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(btnExcluirUsuario)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addComponent(btnNovoUsuario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSair)
+                        .addGap(44, 44, 44))))
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewManterUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewManterUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewManterUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewManterUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    private void tfBuscarNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfBuscarNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfBuscarNomeActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ViewManterUsuario().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton btnBuscarUsuario;
+    private javax.swing.JButton btnExcluirUsuario;
+    private javax.swing.JButton btnNovoUsuario;
+    private javax.swing.JButton btnSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtUsuarios;
     private javax.swing.JTextField tfBuscarNome;
     // End of variables declaration//GEN-END:variables
+
+    public JButton getBrnNovoUsuario() {
+        return btnNovoUsuario;
+    }
+
+    public JButton getBtnBuscarUsuario() {
+        return btnBuscarUsuario;
+    }
+
+    public JButton getBtnExcluirUsuario() {
+        return btnExcluirUsuario;
+    }
+
+    public JButton getBtnSair() {
+        return btnSair;
+    }
+
+    public JTable getJtUsuarios() {
+        return jtUsuarios;
+    }
+
+    public JTextField getTfBuscarNome() {
+        return tfBuscarNome;
+    }
+
+  
 }

@@ -22,7 +22,7 @@ public class UsuarioDAO {
         }
     }
     
-    public void createUser(Usuario user) throws Exception {
+    public void createUser(Usuario user, String password) throws Exception {
         PreparedStatement ps = null;
 
         if (user == null) {
@@ -30,11 +30,11 @@ public class UsuarioDAO {
         }
         try {
                       
-            String SQL = "INSERT INTO usuario (nome, senha, admin) values (?, ?,?);";
+            String SQL = "INSERT INTO usuario (nome, senha, admin) values (?, ?, ?);";
 
             ps = conn.prepareStatement(SQL);
             ps.setString(1, user.getNome());
-            ps.setString(2, user.getSenha());
+            ps.setString(2, password);
             
             if(user.isAdmin())
                 ps.setBoolean(3, true);
@@ -50,7 +50,7 @@ public class UsuarioDAO {
         }
     }
     
-     public Usuario findUserByName(String nome) throws Exception {
+     public boolean findUserByName(String nome) throws Exception {
         PreparedStatement ps = null;
 
         ResultSet rs = null;
@@ -58,15 +58,9 @@ public class UsuarioDAO {
             ps = conn.prepareStatement("select * from usuario where nome = ?");
             ps.setString(1, nome);
             rs = ps.executeQuery();
-            if (!rs.next()) {
-                throw new Exception("Não foi encontrado nenhum registro com o Nome: " + nome);
-            }
             
-            Usuario user = new Usuario();
-            user.setId(rs.getInt(1));
-            user.setNome(rs.getString(2));
-            user.setAdmin(rs.getBoolean(3));
-            return user;
+                return !rs.next(); //if not exists a username like nome it returns true.
+                        
         } catch (SQLException sqle) {
             throw new Exception(sqle);
         } finally {
@@ -74,7 +68,29 @@ public class UsuarioDAO {
         }
         
     }
-  
+    
+    public boolean findUserByNameAndPassword(String username, String pass ) throws Exception {
+        PreparedStatement ps = null;
+        boolean found = false;
+        ResultSet rs = null;
+        try {
+            ps = conn.prepareStatement("select * from usuario where nome = ? and senha = ?");
+            ps.setString(1, username);
+            ps.setString(2, pass);
+            System.out.println(pass);
+            rs = ps.executeQuery();
+            
+            found = rs.next(); //returns true or false if exists.
+           
+        } catch (SQLException sqle) {
+            throw new Exception(sqle);
+            
+        } finally {
+            ConexaoSQLITE.fecharConexao(conn, ps, rs);
+        }
+        return found;
+    }
+     
     public ArrayList findAll() throws Exception {
         PreparedStatement ps = null;
 
