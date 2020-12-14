@@ -3,6 +3,8 @@ package br.ufes.presenter;
 import br.ufes.view.ViewManterUsuario;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -11,7 +13,7 @@ import java.awt.event.ActionListener;
 public class PresenterManterUsuario {
     private ViewManterUsuario vmu;
 
-    public PresenterManterUsuario() {
+    public PresenterManterUsuario(PresenterHome ph) {
         vmu = new ViewManterUsuario();
         vmu.getBtnSair().addActionListener(new ActionListener() {
             @Override
@@ -31,7 +33,11 @@ public class PresenterManterUsuario {
         vmu.getBrnNovoUsuario().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                try {
+                    ph.AddTela(new PresenterCadastroUsuario(ph).getVc());
+                } catch (Exception ex) {
+                    Logger.getLogger(PresenterManterUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         
@@ -39,6 +45,11 @@ public class PresenterManterUsuario {
         
         vmu.setVisible(true);
     }
+
+    public ViewManterUsuario getVmu() {
+        return vmu;
+    }
+    
     
     
 }

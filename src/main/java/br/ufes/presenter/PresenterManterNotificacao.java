@@ -1,15 +1,17 @@
-package br.ufes.model;
+package br.ufes.presenter;
+
+import br.ufes.model.Usuario;
 
 /**
  *
  * @author Alcebiades
  */
-public class Notificacao {
-       private int idNotificacao;
+public class PresenterManterNotificacao {
+    private int idNotificacao;
     private Usuario usuario;
     private String descricao;
 
-    public Notificacao(int idNotificacao, Usuario usuario, String descricao) {
+    public PresenterManterNotificacao(int idNotificacao, Usuario usuario, String descricao) {
         this.idNotificacao = idNotificacao;
         this.usuario = usuario;
         this.descricao = descricao;
@@ -38,5 +40,6 @@ public class Notificacao {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+    
     
 }

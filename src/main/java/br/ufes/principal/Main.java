@@ -16,7 +16,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
 
-        new PresenterHome().getVh().setVisible(true);
+        new PresenterHome();
         
         //GerarJListImagens gl = new GerarJListImagens("Imagens");
         

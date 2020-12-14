@@ -16,13 +16,14 @@ import javax.swing.JOptionPane;
 public class PresenterHome {
 
     private ViewHome vh;
- 
+    private PresenterHome ph;
 
     public PresenterHome() {
         this.vh = new ViewHome();
-        
+        ph = this;
         try {
-            this.AddTela(new PresenterLogin(this).getVl());
+             ph = this;
+            this.AddTela(new PresenterLogin(ph).getVl());
             vh.getMiConsultarImagem().setVisible(false);
             vh.getMiConsultarUsuario().setVisible(false);
             
@@ -50,6 +51,8 @@ public class PresenterHome {
         this.vh.getMiConsultarUsuario().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                
+                AddTela(new PresenterManterUsuario(ph).getVmu());
                 
             }
         });

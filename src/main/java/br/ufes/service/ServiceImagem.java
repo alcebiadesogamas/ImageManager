@@ -17,10 +17,13 @@ public class ServiceImagem {
         imgRepo = new ImagemRepository();
     }
 
-    public ArrayList<ImagemProxy> getFromDisk(String path) throws Exception {
+    public ArrayList<ImagemProxy> readFromDisk() throws Exception {
 
-        ArrayList<ImagemProxy> imgs = imgRepo.readFromDisk(path);
+        ArrayList<ImagemProxy> imgs;
+        imgs = imgRepo.readFromDisk();
+      
         return imgs;
+
     }
 
     public ArrayList<ImagemProxy> readFromDataBase() throws Exception {

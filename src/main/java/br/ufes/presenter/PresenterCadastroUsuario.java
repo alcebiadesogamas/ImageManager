@@ -28,11 +28,6 @@ public class PresenterCadastroUsuario {
         vc.getBtnCancelar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    ph.AddTela(new PresenterLogin(ph).getVl());
-                } catch (Exception ex) {
-                    Logger.getLogger(PresenterCadastroUsuario.class.getName()).log(Level.SEVERE, null, ex);
-                }
                 vc.dispose();
             }
         });

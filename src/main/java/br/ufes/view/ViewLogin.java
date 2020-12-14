@@ -33,6 +33,10 @@ public class ViewLogin extends javax.swing.JInternalFrame {
         btnEntrar = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
 
+        setClosable(true);
+        setTitle("Login");
+        setVisible(true);
+
         jLabel1.setText("Nome:");
 
         jLabel2.setText("Senha:");
@@ -76,7 +80,7 @@ public class ViewLogin extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(pfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(btnEntrar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCadastrar)

@@ -24,15 +24,15 @@ public class ImagemDAO {
             throw new Exception("O valor passado não pode ser nulo");
         }
         try {
+            
             ps = conn.prepareStatement("SELECT * FROM imagem where caminho = ?");
             ps.setString(1, image.getCaminho());
             rs = ps.executeQuery();
-            
             if(!rs.next()){
                 String SQL = "INSERT INTO imagem (caminho) values (?);";
 
                 ps = conn.prepareStatement(SQL);
-                ps.setString(2, image.getCaminho());
+                ps.setString(1, image.getCaminho());
             
                 ps.executeUpdate();
             }

@@ -2,12 +2,10 @@ package br.ufes.presenter;
 
 import br.ufes.model.Usuario;
 import br.ufes.service.ServiceUsuario;
-import br.ufes.view.ViewCadastro;
-import br.ufes.view.ViewHome;
+
 import br.ufes.view.ViewLogin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;

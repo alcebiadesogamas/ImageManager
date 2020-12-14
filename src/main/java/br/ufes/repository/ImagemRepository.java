@@ -22,9 +22,9 @@ public class ImagemRepository {
         imgDao = new ImagemDAO();
     }
 
-    public ArrayList<ImagemProxy> readFromDisk(String path) throws Exception {
+    public ArrayList<ImagemProxy> readFromDisk() throws Exception {
 
-        File dir = new File(path);
+        File dir = new File("Imagens");
 
         final String[] EXTENSIONS = new String[]{"jpg", "png"};
         // filter to identify images based on their extensions
@@ -42,25 +42,23 @@ public class ImagemRepository {
         };
 
         ArrayList<ImagemProxy> imagens = new ArrayList<>();
-      
-        if (!imgDao.FindAnyImage()) {
-            if (dir.isDirectory()) { // make sure it's a directory
-                for (final File f : dir.listFiles(IMAGE_FILTER)) {
-                    BufferedImage img = null;
 
-                    try {
-                        img = ImageIO.read(f);
-                        imgDao.AddImage(new ImagemProxy((dir + "/" + f.getName()).trim()));
-                        imagens.add(new ImagemProxy((dir + "/" + f.getName()).trim()));
+        if (dir.isDirectory()) { // make sure it's a directory
+            for (final File f : dir.listFiles(IMAGE_FILTER)) {
+                BufferedImage img = null;
 
-                    } catch (final IOException e) {
-                        // handle errors here
-                    }
+                try {
+                    img = ImageIO.read(f);
+                    imgDao.AddImage(new ImagemProxy((dir + "/" + f.getName()).trim()));
+                    imagens.add(new ImagemProxy((dir + "/" + f.getName()).trim()));
 
+                } catch (final IOException e) {
+                    // handle errors here
                 }
+
             }
         }
-
+        
         return imagens;
 
     }

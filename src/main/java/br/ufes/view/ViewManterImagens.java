@@ -1,7 +1,7 @@
 package br.ufes.view;
 
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JList;
 
 /**
@@ -10,12 +10,11 @@ import javax.swing.JList;
  */
 public class ViewManterImagens extends javax.swing.JInternalFrame {
     
-    DefaultListModel listModel;
+    
     /**
      * Creates new form ManterImagens
      */
     public ViewManterImagens() {
-        listModel = new DefaultListModel();
         initComponents();
     }
 
@@ -32,6 +31,9 @@ public class ViewManterImagens extends javax.swing.JInternalFrame {
         btnExcluir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         JListImagens = new javax.swing.JList<>();
+        jPanel1 = new javax.swing.JPanel();
+        jlImagemNormal = new javax.swing.JLabel();
+        btnSair = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(497, 326));
         setMinimumSize(new java.awt.Dimension(497, 326));
@@ -42,27 +44,62 @@ public class ViewManterImagens extends javax.swing.JInternalFrame {
 
         jScrollPane1.setViewportView(JListImagens);
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jlImagemNormal.setText("jLabel1");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlImagemNormal)
+                .addContainerGap(769, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlImagemNormal)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        btnSair.setText("Sair");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
-                .addComponent(btnExcluir)
-                .addGap(37, 37, 37)
-                .addComponent(btnVizualizar)
-                .addGap(28, 28, 28))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnVizualizar)
+                        .addComponent(btnExcluir))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnSair)
+                        .addGap(7, 7, 7)))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(519, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVizualizar)
-                    .addComponent(btnExcluir))
-                .addGap(18, 18, 18))
-            .addComponent(jScrollPane1)
+                .addGap(136, 136, 136)
+                .addComponent(btnVizualizar)
+                .addGap(38, 38, 38)
+                .addComponent(btnExcluir)
+                .addGap(39, 39, 39)
+                .addComponent(btnSair)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -72,8 +109,11 @@ public class ViewManterImagens extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> JListImagens;
     private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnSair;
     private javax.swing.JButton btnVizualizar;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jlImagemNormal;
     // End of variables declaration//GEN-END:variables
 
     public JButton getBtnExcluir() {
@@ -88,9 +128,13 @@ public class ViewManterImagens extends javax.swing.JInternalFrame {
         return JListImagens;
     }
 
-    public DefaultListModel getListModel() {
-        return listModel;
+    public JLabel getJlImagemNormal() {
+        return jlImagemNormal;
     }
-    
+
+    public JButton getBtnSair() {
+        return btnSair;
+    }
+
     
 }
