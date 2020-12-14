@@ -50,6 +50,17 @@ public class PresenterLogin {
                     if (userservice.loginValidation(user, new String(vl.getPfSenha().getPassword()))) {
                         ph.getVh().getMiConsultarImagem().setVisible(true);
                         ph.getVh().getMiConsultarUsuario().setVisible(true);
+                        ph.getVh().getJlNomeUsuarioLogado().setText(user.getNome());
+                        String adm = "Não";
+                       
+                        try {
+                            if(userservice.isUserAdmin(user))
+                                adm = "Sim";
+                        } catch (Exception ex) {
+                            Logger.getLogger(PresenterLogin.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        
+                        ph.getVh().getJlTrueFalseAdm().setText(adm);
                         vl.dispose();
 
                     } else {
@@ -61,7 +72,7 @@ public class PresenterLogin {
                 }
             }
         });
-
+        
         this.vl.setVisible(true);
     }
 

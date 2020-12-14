@@ -28,4 +28,12 @@ public class ServiceUsuario {
     public boolean findAnyUser() throws Exception{
         return userRepo.findAnyUser();
     }
+    
+    public boolean isUserAdmin(Usuario user) throws Exception{
+        return userRepo.isAdmin(user);
+    }
+    
+    public Usuario findUser(Usuario user) throws Exception{
+        return userRepo.findUser(user);
+    }
 }

@@ -1,6 +1,7 @@
 package br.ufes.view;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -36,7 +37,7 @@ public class ViewCadastro extends javax.swing.JInternalFrame {
         btnCadastrar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         rbAdmin = new javax.swing.JRadioButton();
-        jLabel4 = new javax.swing.JLabel();
+        jlAsk = new javax.swing.JLabel();
 
         setTitle("Cadastro");
 
@@ -52,7 +53,7 @@ public class ViewCadastro extends javax.swing.JInternalFrame {
 
         rbAdmin.setText("Administrador");
 
-        jLabel4.setText("Será Administrador?");
+        jlAsk.setText("Será Administrador?");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -62,7 +63,7 @@ public class ViewCadastro extends javax.swing.JInternalFrame {
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(rbAdmin)
-                    .addComponent(jLabel4)
+                    .addComponent(jlAsk)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(btnCancelar)
@@ -96,7 +97,7 @@ public class ViewCadastro extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pfConfirmarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel4)
+                .addComponent(jlAsk)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rbAdmin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
@@ -116,7 +117,7 @@ public class ViewCadastro extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jlAsk;
     private javax.swing.JPasswordField pfConfirmarSenha;
     private javax.swing.JPasswordField pfSenha;
     private javax.swing.JRadioButton rbAdmin;
@@ -146,5 +147,10 @@ public class ViewCadastro extends javax.swing.JInternalFrame {
     public JRadioButton getRbAdmin() {
         return rbAdmin;
     }
+
+    public JLabel getJlAsk() {
+        return jlAsk;
+    }
+    
     
 }

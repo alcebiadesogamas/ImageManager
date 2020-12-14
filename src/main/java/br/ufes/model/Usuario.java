@@ -11,18 +11,27 @@ public class Usuario {
     private String nome;
     private String senha;
     private boolean admin = false;
-    private ArrayList<Permissao> permissoes = new ArrayList<>();
+    private Permissao permissoes;
 
     public Usuario(int id, String nome, String senha, boolean admin) {
         this.id = id;
         this.nome = nome;
         this.senha = senha;
         this.admin = admin;
+        permissoes = new Permissao();
     }
 
+    public Usuario(int id, String nome) {
+        this.id = id;
+        this.nome = nome;
+        permissoes = new Permissao();
+    }
+
+    
     public Usuario() {
-        
+        permissoes = new Permissao();
     }  
+    
     
     public String getNome() {
         return nome;
@@ -52,13 +61,12 @@ public class Usuario {
         this.id = id;
     }
 
-    public ArrayList<Permissao> getPermissoes() {
+    public Permissao getPermissoes() {
         return permissoes;
     }
 
-    public void setPermissoes(ArrayList<Permissao> permissoes) {
+    public void setPermissoes(Permissao permissoes) {
         this.permissoes = permissoes;
     }
-    
-    
+
 }

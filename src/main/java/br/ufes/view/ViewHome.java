@@ -35,6 +35,8 @@ public class ViewHome extends javax.swing.JFrame {
         btnNotificações = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jlQtdNotificacao = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jlTrueFalseAdm = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         miConsultarUsuario = new javax.swing.JMenuItem();
@@ -52,7 +54,9 @@ public class ViewHome extends javax.swing.JFrame {
 
         btnNotificações.setText("Ver Notificações");
 
-        jLabel2.setText("Quantidade de notificações");
+        jLabel2.setText("Notificações:");
+
+        jLabel3.setText("Administrador:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -63,7 +67,11 @@ public class ViewHome extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jlNomeUsuarioLogado)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 262, Short.MAX_VALUE)
+                .addGap(100, 100, 100)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jlTrueFalseAdm)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jlQtdNotificacao)
@@ -80,7 +88,9 @@ public class ViewHome extends javax.swing.JFrame {
                     .addComponent(jlNomeUsuarioLogado)
                     .addComponent(btnNotificações)
                     .addComponent(jLabel2)
-                    .addComponent(jlQtdNotificacao))
+                    .addComponent(jlQtdNotificacao)
+                    .addComponent(jLabel3)
+                    .addComponent(jlTrueFalseAdm))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -180,6 +190,7 @@ public class ViewHome extends javax.swing.JFrame {
     private javax.swing.JButton btnNotificações;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -189,6 +200,7 @@ public class ViewHome extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jdpPrincipal;
     private javax.swing.JLabel jlNomeUsuarioLogado;
     private javax.swing.JLabel jlQtdNotificacao;
+    private javax.swing.JLabel jlTrueFalseAdm;
     private javax.swing.JMenuItem miConsultarImagem;
     private javax.swing.JMenuItem miConsultarUsuario;
     private javax.swing.JMenuItem miSair;
@@ -226,5 +238,11 @@ public class ViewHome extends javax.swing.JFrame {
     public JLabel getJlQtdNotificacao() {
         return jlQtdNotificacao;
     }
+
+    public JLabel getJlTrueFalseAdm() {
+        return jlTrueFalseAdm;
+    }
+    
+    
     
 }

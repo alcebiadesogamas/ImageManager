@@ -1,12 +1,11 @@
 package br.ufes.presenter;
 
+import br.ufes.model.Permissao;
 import br.ufes.model.Usuario;
 import br.ufes.service.ServiceUsuario;
 import br.ufes.view.ViewCadastro;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,8 +21,12 @@ public class PresenterCadastroUsuario {
         vc = new ViewCadastro();
         serviceUser = new ServiceUsuario();
         Usuario user = new Usuario();
-        if(serviceUser.findAnyUser()){
-            
+        Permissao p;
+        if(!serviceUser.findAnyUser()){
+           vc.getRbAdmin().setVisible(false);
+           vc.getJlAsk().setVisible(false);
+           p = new Permissao(true,true,true,user);
+           user.setPermissoes(p);
         }
         vc.getBtnCancelar().addActionListener(new ActionListener() {
             @Override

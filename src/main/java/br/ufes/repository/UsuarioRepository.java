@@ -48,4 +48,12 @@ public class UsuarioRepository {
     public boolean findAnyUser() throws Exception{
        return udao.findAnyUser();
     }
+    
+    public boolean isAdmin(Usuario user) throws Exception{
+        return udao.isAdmin(user);
+    }
+    
+    public Usuario findUser(Usuario user) throws Exception{
+        return udao.findIdUserByName(user);
+    }
 }

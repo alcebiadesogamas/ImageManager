@@ -13,12 +13,10 @@ import java.util.ArrayList;
  */
 public class UsuarioDAO {
 
-  
-
     public void createUser(Usuario user, String password) throws Exception {
-        
-        Connection conn  = ConexaoFactory.getConexao();
-        
+
+        Connection conn = ConexaoFactory.getConexao();
+
         PreparedStatement ps = null;
 
         if (user == null) {
@@ -47,9 +45,31 @@ public class UsuarioDAO {
         }
     }
 
+    public boolean isAdmin(Usuario user) throws Exception {
+        Connection conn = ConexaoFactory.getConexao();
+
+        PreparedStatement ps = null;
+
+        ResultSet rs = null;
+        try {
+            ps = conn.prepareStatement("select (admin) from usuario where nome = ?");
+            ps.setString(1, user.getNome());
+
+            rs = ps.executeQuery();
+            boolean aux = rs.getBoolean(1);
+            return aux;
+
+        } catch (SQLException sqle) {
+            throw new Exception(sqle);
+        } finally {
+            ConexaoFactory.fecharConexao(conn, ps, rs);
+        }
+
+    }
+
     public boolean findUserByName(String nome) throws Exception {
-        Connection conn  = ConexaoFactory.getConexao();
-         
+        Connection conn = ConexaoFactory.getConexao();
+
         PreparedStatement ps = null;
 
         ResultSet rs = null;
@@ -67,15 +87,15 @@ public class UsuarioDAO {
         }
 
     }
-    
-     public boolean findAnyUser() throws Exception {
-         Connection conn  = ConexaoFactory.getConexao();
+
+    public boolean findAnyUser() throws Exception {
+        Connection conn = ConexaoFactory.getConexao();
         PreparedStatement ps = null;
 
         ResultSet rs = null;
         try {
             ps = conn.prepareStatement("select * from usuario");
-            
+
             rs = ps.executeQuery();
 
             return rs.next(); //if there is some user it returns true.
@@ -89,12 +109,12 @@ public class UsuarioDAO {
     }
 
     public boolean findUserByNameAndPassword(String username, String pass) throws Exception {
-         Connection conn  = ConexaoFactory.getConexao();
+        Connection conn = ConexaoFactory.getConexao();
         PreparedStatement ps = null;
         boolean found = false;
         ResultSet rs = null;
         try {
-            ps = conn.prepareStatement("select * from usuario where nome = ? and senha = ?");
+            ps = conn.prepareStatement("select * from usuario where nome = ? and senha = ?;");
             ps.setString(1, username);
             ps.setString(2, pass);
             rs = ps.executeQuery();
@@ -110,9 +130,34 @@ public class UsuarioDAO {
         return found;
     }
 
-    public ArrayList findAll() throws Exception {
-         Connection conn  = ConexaoFactory.getConexao();
+    public Usuario findIdUserByName(Usuario user) throws Exception {
+        Connection conn = ConexaoFactory.getConexao();
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+         
+            ps = conn.prepareStatement("select * from usuario where nome = ?;");
+            ps.setString(1, user.getNome());
+         
+            rs = ps.executeQuery();
+
+            int id = rs.getInt(1);
+            user.setId(id);
         
+            return user; 
+
+        } catch (SQLException sqle) {
+            throw new Exception(sqle);
+        } finally {
+            ConexaoFactory.fecharConexao(conn, ps, rs);
+        }
+
+    }
+
+    public ArrayList findAll() throws Exception {
+        Connection conn = ConexaoFactory.getConexao();
+
         PreparedStatement ps = null;
 
         ResultSet rs = null;
@@ -138,8 +183,8 @@ public class UsuarioDAO {
     }
 
     public void delete(Usuario user) throws Exception {
-         Connection conn  = ConexaoFactory.getConexao();
-        
+        Connection conn = ConexaoFactory.getConexao();
+
         PreparedStatement ps = null;
 
         if (user == null) {

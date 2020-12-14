@@ -20,6 +20,17 @@ public class Permissao {
         this.usuario = usuario;
     }
 
+    public Permissao(boolean excluir, boolean compartilhar, boolean vizualizar, Usuario usuario) {
+        this.excluir = excluir;
+        this.compartilhar = compartilhar;
+        this.vizualizar = vizualizar;
+        this.usuario = usuario;
+    }
+
+    public Permissao() {
+       
+    }
+    
     public boolean isExcluir() {
         return excluir;
     }
