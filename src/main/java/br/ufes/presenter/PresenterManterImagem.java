@@ -23,6 +23,7 @@ public class PresenterManterImagem {
     public PresenterManterImagem() throws Exception {
         this.serviceImg = new ServiceImagem();
         this.vmi = new ViewManterImagens();
+        vmi.getJlImagemNormal().setText("");
         if(imagens.isEmpty()){
             imagens = serviceImg.readFromDisk();
         }
@@ -46,7 +47,7 @@ public class PresenterManterImagem {
                 String path = imagens.get(vmi.getJListImagens().getSelectedIndex()).getCaminho();
                 
                 ImageIcon iconLogo = new ImageIcon(path);
-                vmi.getJlImagemNormal().setText("");
+                
                 vmi.getJlImagemNormal().setIcon(iconLogo);
             }
         });

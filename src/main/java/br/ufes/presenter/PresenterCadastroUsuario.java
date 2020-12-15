@@ -61,8 +61,13 @@ public class PresenterCadastroUsuario {
                         }
                         JOptionPane.showMessageDialog(null,"Usuario Criado Com Sucesso!");
                         vc.dispose();
-                        ph.getVh().getMiConsultarImagem().setVisible(true);
-                        ph.getVh().getMiConsultarUsuario().setVisible(true);
+                        try {
+                            ph.AddTela(new PresenterLogin(ph).getVl());
+                            //ph.getVh().getMiConsultarImagem().setVisible(true);
+                            //ph.getVh().getMiConsultarUsuario().setVisible(true);
+                        } catch (Exception ex) {
+                            Logger.getLogger(PresenterCadastroUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }else{
                         JOptionPane.showMessageDialog(null,"Usuario Existente");
                     }
