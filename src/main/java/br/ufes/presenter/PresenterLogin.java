@@ -50,6 +50,7 @@ public class PresenterLogin {
                     if (userservice.loginValidation(user, new String(vl.getPfSenha().getPassword()))) {
                         ph.getVh().getMiConsultarImagem().setVisible(true);
                         ph.getVh().getMiConsultarUsuario().setVisible(true);
+                        ph.getVh().getBtnNotificações().setEnabled(true);
                         ph.getVh().getJlNomeUsuarioLogado().setText(user.getNome());
                         String adm = "Não";
                        

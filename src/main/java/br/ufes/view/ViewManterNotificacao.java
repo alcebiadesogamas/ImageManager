@@ -1,5 +1,8 @@
 package br.ufes.view;
 
+import javax.swing.JButton;
+import javax.swing.JTable;
+
 /**
  *
  * @author Alcebiades
@@ -32,10 +35,7 @@ public class ViewManterNotificacao extends javax.swing.JInternalFrame {
 
         jtNotificacao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Usuario", "Administrador", "Notificacão"
@@ -45,7 +45,7 @@ public class ViewManterNotificacao extends javax.swing.JInternalFrame {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -56,6 +56,7 @@ public class ViewManterNotificacao extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        jtNotificacao.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jtNotificacao);
         if (jtNotificacao.getColumnModel().getColumnCount() > 0) {
             jtNotificacao.getColumnModel().getColumn(0).setResizable(false);
@@ -105,4 +106,29 @@ public class ViewManterNotificacao extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtNotificacao;
     // End of variables declaration//GEN-END:variables
+
+    public JButton getBtnAvaliar() {
+        return btnAvaliar;
+    }
+
+    public void setBtnAvaliar(JButton btnAvaliar) {
+        this.btnAvaliar = btnAvaliar;
+    }
+
+    public JButton getBtnSair() {
+        return btnSair;
+    }
+
+    public void setBtnSair(JButton btnSair) {
+        this.btnSair = btnSair;
+    }
+
+    public JTable getJtNotificacao() {
+        return jtNotificacao;
+    }
+
+    public void setJtNotificacao(JTable jtNotificacao) {
+        this.jtNotificacao = jtNotificacao;
+    }
+
 }

@@ -203,4 +203,29 @@ public class UsuarioDAO {
             ConexaoFactory.fecharConexao(conn, ps);
         }
     }
+    
+    public Usuario findbyId(int id) throws Exception{
+            Connection conn = ConexaoFactory.getConexao();
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+         
+            ps = conn.prepareStatement("select * from usuario where idusuario = ?;");
+            ps.setInt(1, id);
+         
+            rs = ps.executeQuery();
+            Usuario user = new Usuario();
+            user.setNome(rs.getString(2));
+            user.setId(id);
+            user.setAdmin(rs.getBoolean(4));
+        
+            return user; 
+
+        } catch (SQLException sqle) {
+            throw new Exception(sqle);
+        } finally {
+            ConexaoFactory.fecharConexao(conn, ps, rs);
+        }
+    }
 }

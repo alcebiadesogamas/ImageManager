@@ -29,6 +29,7 @@ public class PresenterHome {
             this.AddTela(new PresenterLogin(ph).getVl());
             vh.getMiConsultarImagem().setVisible(false);
             vh.getMiConsultarUsuario().setVisible(false);
+            vh.getBtnNotificações().setEnabled(false);
             
         } catch (Exception ex) {
             Logger.getLogger(PresenterHome.class.getName()).log(Level.SEVERE, null, ex);
@@ -72,6 +73,15 @@ public class PresenterHome {
             
             }
         });
+        
+        this.vh.getBtnNotificações().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AddTela(new PresenterManterNotificacao().getVmn());
+            }
+        });
+        
+        
         vh.setVisible(true);
     
     }
