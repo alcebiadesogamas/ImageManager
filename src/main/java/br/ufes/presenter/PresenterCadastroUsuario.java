@@ -2,10 +2,13 @@ package br.ufes.presenter;
 
 import br.ufes.model.Permissao;
 import br.ufes.model.Usuario;
+import br.ufes.service.ServicePermissao;
 import br.ufes.service.ServiceUsuario;
 import br.ufes.view.ViewCadastro;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,18 +18,22 @@ import javax.swing.JOptionPane;
 public class PresenterCadastroUsuario {
     private ViewCadastro vc;
     private ServiceUsuario serviceUser;
+    private ServicePermissao sp;
     private Usuario user;
     
     public PresenterCadastroUsuario(PresenterHome ph) throws Exception {
         vc = new ViewCadastro();
+        sp = new ServicePermissao();
         serviceUser = new ServiceUsuario();
         Usuario user = new Usuario();
+        
         Permissao p;
         if(!serviceUser.findAnyUser()){
            vc.getRbAdmin().setVisible(false);
            vc.getJlAsk().setVisible(false);
            p = new Permissao(true,true,true,user);
            user.setPermissoes(p);
+           user.setAdmin(true);
         }
         vc.getBtnCancelar().addActionListener(new ActionListener() {
             @Override
@@ -42,8 +49,16 @@ public class PresenterCadastroUsuario {
                     
                     if(vc.getRbAdmin().isSelected())
                         user.setAdmin(true);
-                    user.setNome(vc.getTfNome().getText());
+                    user.setNome(vc.getTfNome().getText()); 
+                     
+                    
                     if(serviceUser.createUser(user, new String(vc.getPfSenha().getPassword()))){
+                        try {
+                           
+                            sp.createPermissao(user);
+                        } catch (Exception ex) {
+                            Logger.getLogger(PresenterCadastroUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                         JOptionPane.showMessageDialog(null,"Usuario Criado Com Sucesso!");
                         vc.dispose();
                         ph.getVh().getMiConsultarImagem().setVisible(true);

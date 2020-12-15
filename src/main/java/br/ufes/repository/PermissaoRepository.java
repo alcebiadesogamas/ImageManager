@@ -1,7 +1,10 @@
 package br.ufes.repository;
 
 import br.ufes.dao.PermissaoDAO;
+import br.ufes.model.Imagem;
+import br.ufes.model.Permissao;
 import br.ufes.model.Usuario;
+import br.ufes.view.proxy.ImagemProxy;
 
 /**
  *
@@ -14,9 +17,14 @@ public class PermissaoRepository {
         pdao = new PermissaoDAO();
     }
     
-    public Usuario findAllPermissions(Usuario user) throws Exception
+    public void createPermissão(Usuario user, ImagemProxy img) throws Exception
     {
-        return pdao.getAllPermissionOf(user);
+        pdao.AddPermission(user, img);
+    }
+    
+    public Usuario findAllPermissions(Usuario user, ImagemProxy img) throws Exception
+    {
+        return pdao.getAllPermissionOf(user,img);
     }
     
 }

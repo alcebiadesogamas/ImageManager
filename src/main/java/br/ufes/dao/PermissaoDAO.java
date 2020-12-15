@@ -2,6 +2,7 @@ package br.ufes.dao;
 
 import br.ufes.model.Permissao;
 import br.ufes.model.Usuario;
+import br.ufes.view.proxy.ImagemProxy;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,12 +14,12 @@ import java.sql.SQLException;
  */
 public class PermissaoDAO {
 
-    public void AddPermission(Permissao permission) throws Exception {
+    public void AddPermission(Usuario user, ImagemProxy img) throws Exception {
         Connection conn = ConexaoFactory.getConexao();
 
         PreparedStatement ps = null;
 
-        if (permission == null) {
+        if (user == null||img == null) {
             throw new Exception("O valor passado não pode ser nulo");
         }
         try {
@@ -27,11 +28,11 @@ public class PermissaoDAO {
                     + " values (?, ?, ?, ?, ?);";
 
             ps = conn.prepareStatement(SQL);
-            ps.setInt(1, permission.getUsuario().getId());
-            ps.setInt(2, permission.getImagem().getId());
-            ps.setBoolean(3, permission.isExcluir());
-            ps.setBoolean(4, permission.isVizualizar());
-            ps.setBoolean(5, permission.isCompartilhar());
+            ps.setInt(1, user.getId());
+            ps.setInt(2, img.getId());
+            ps.setBoolean(3,  user.getPermissoes().isExcluir());
+            ps.setBoolean(4,  user.getPermissoes().isVizualizar());
+            ps.setBoolean(5,  user.getPermissoes().isCompartilhar());
             ps.executeUpdate();
 
         } catch (SQLException sqle) {
@@ -41,7 +42,7 @@ public class PermissaoDAO {
         }
     }
 
-    public Usuario getAllPermissionOf(Usuario user) throws Exception {
+    public Usuario getAllPermissionOf(Usuario user, ImagemProxy img) throws Exception {
         Connection conn = ConexaoFactory.getConexao();
 
         PreparedStatement ps = null;
@@ -54,17 +55,16 @@ public class PermissaoDAO {
             UsuarioDAO udao = new UsuarioDAO();
             Usuario aux = udao.findIdUserByName(user);
 
-            String SQL = "select * from permissao where idusuario = ?;";
+            String SQL = "select * from permissao where idusuario = ? and idimagem = ?;";
             ps = conn.prepareStatement(SQL);
             ps.setInt(1, aux.getId());
+            ps.setInt(2,img.getId());
             rs = ps.executeQuery();
-            Permissao p = new Permissao();
-            p.setExcluir(rs.getBoolean(3));
-            p.setVizualizar(rs.getBoolean(4));
+           
+            user.getPermissoes().setExcluir(rs.getBoolean(3));
+            user.getPermissoes().setVizualizar(rs.getBoolean(4));
+            user.getPermissoes().setCompartilhar(rs.getBoolean(5));
 
-            p.setCompartilhar(rs.getBoolean(5));
-
-            user.setPermissoes(p);
             return user;
 
         } catch (Exception e) {

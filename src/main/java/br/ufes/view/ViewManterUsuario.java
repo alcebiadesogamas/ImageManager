@@ -48,14 +48,14 @@ public class ViewManterUsuario extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Usuario", "Administrador", "Excluir", "Vizualizar", "Compartilhar"
+                "Usuario", "Administrador", "Excluir", "Vizualizar", "Compartilhar", "Imagem"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -74,6 +74,7 @@ public class ViewManterUsuario extends javax.swing.JInternalFrame {
             jtUsuarios.getColumnModel().getColumn(2).setResizable(false);
             jtUsuarios.getColumnModel().getColumn(3).setResizable(false);
             jtUsuarios.getColumnModel().getColumn(4).setResizable(false);
+            jtUsuarios.getColumnModel().getColumn(5).setResizable(false);
         }
 
         btnExcluirUsuario.setText("Excluir");

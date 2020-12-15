@@ -144,6 +144,7 @@ public class UsuarioDAO {
 
             int id = rs.getInt(1);
             user.setId(id);
+            user.setAdmin(rs.getBoolean(4));
         
             return user; 
 

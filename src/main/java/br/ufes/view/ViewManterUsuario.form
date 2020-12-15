@@ -93,16 +93,22 @@
         <Component class="javax.swing.JTable" name="jtUsuarios">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="5" rowCount="0">
+              <Table columnCount="6" rowCount="0">
                 <Column editable="false" title="Usuario" type="java.lang.String"/>
                 <Column editable="false" title="Administrador" type="java.lang.String"/>
                 <Column editable="false" title="Excluir" type="java.lang.String"/>
                 <Column editable="false" title="Vizualizar" type="java.lang.String"/>
                 <Column editable="false" title="Compartilhar" type="java.lang.String"/>
+                <Column editable="false" title="Imagem" type="java.lang.String"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                   <Title/>
                   <Editor/>

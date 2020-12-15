@@ -11,10 +11,15 @@ import java.util.ArrayList;
  */
 public class ServiceImagem {
 
-    ImagemRepository imgRepo;
-
+    private ImagemRepository imgRepo;
+    private ArrayList<ImagemProxy> imagens;
     public ServiceImagem() {
         imgRepo = new ImagemRepository();
+        imagens = new ArrayList<>();
+    }
+
+    public ArrayList<ImagemProxy> getImagens() {
+        return imagens;
     }
 
     public ArrayList<ImagemProxy> readFromDisk() throws Exception {
@@ -28,6 +33,7 @@ public class ServiceImagem {
 
     public ArrayList<ImagemProxy> readFromDataBase() throws Exception {
         ArrayList<ImagemProxy> imgs = imgRepo.readFromDataBase();
+        this.imagens = imgs;
         return imgs;
     }
 }
