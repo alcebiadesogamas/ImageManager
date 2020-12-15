@@ -1,7 +1,5 @@
 package br.ufes.presenter;
 
-import br.ufes.dao.ImagemDAO;
-import br.ufes.model.Permissao;
 import br.ufes.model.Usuario;
 import br.ufes.service.ServiceImagem;
 import br.ufes.service.ServicePermissao;
@@ -10,7 +8,6 @@ import br.ufes.view.ViewManterUsuario;
 import br.ufes.view.proxy.ImagemProxy;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;

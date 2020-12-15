@@ -13,6 +13,7 @@ public class ServiceImagem {
 
     private ImagemRepository imgRepo;
     private ArrayList<ImagemProxy> imagens;
+    
     public ServiceImagem() {
         imgRepo = new ImagemRepository();
         imagens = new ArrayList<>();
@@ -26,7 +27,7 @@ public class ServiceImagem {
 
         ArrayList<ImagemProxy> imgs;
         imgs = imgRepo.readFromDisk();
-      
+        this.imagens = imgs;
         return imgs;
 
     }
@@ -35,5 +36,9 @@ public class ServiceImagem {
         ArrayList<ImagemProxy> imgs = imgRepo.readFromDataBase();
         this.imagens = imgs;
         return imgs;
+    }
+    
+    public ImagemProxy findImage(String path) throws Exception{
+        return imgRepo.findImagem(path);
     }
 }

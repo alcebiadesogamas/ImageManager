@@ -1,5 +1,6 @@
 package br.ufes.presenter;
 
+import br.ufes.model.Usuario;
 import br.ufes.view.ViewHome;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,8 +18,10 @@ public class PresenterHome {
 
     private ViewHome vh;
     private PresenterHome ph;
+    private Usuario usuarioAtual;
 
     public PresenterHome() {
+        this.usuarioAtual = new Usuario();
         this.vh = new ViewHome();
         ph = this;
         try {
@@ -62,7 +65,7 @@ public class PresenterHome {
             public void actionPerformed(ActionEvent e) {
                 
                 try {
-                    AddTela(new PresenterManterImagem().getVmi());
+                    AddTela(new PresenterManterImagem(ph).getVmi());
                 } catch (Exception ex) {
                     Logger.getLogger(PresenterHome.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -79,6 +82,14 @@ public class PresenterHome {
     
     public void AddTela(javax.swing.JInternalFrame jf){
         this.vh.getJdpPrincipal().add(jf);
+    }
+
+    public Usuario getUsuarioAtual() {
+        return usuarioAtual;
+    }
+
+    public void setUsuarioAtual(Usuario usuarioAtual) {
+        this.usuarioAtual = usuarioAtual;
     }
 
 }

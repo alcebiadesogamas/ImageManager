@@ -71,4 +71,8 @@ public class ImagemRepository {
 
         return imagens;
     }
+    
+    public ImagemProxy findImagem(String path) throws Exception{
+        return imgDao.findImagem(path);
+    }
 }

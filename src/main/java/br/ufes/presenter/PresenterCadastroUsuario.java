@@ -25,15 +25,17 @@ public class PresenterCadastroUsuario {
         vc = new ViewCadastro();
         sp = new ServicePermissao();
         serviceUser = new ServiceUsuario();
-        Usuario user = new Usuario();
+        user = new Usuario();
         
         Permissao p;
         if(!serviceUser.findAnyUser()){
            vc.getRbAdmin().setVisible(false);
            vc.getJlAsk().setVisible(false);
-           p = new Permissao(true,true,true,user);
-           user.setPermissoes(p);
-           user.setAdmin(true);
+           //p = new Permissao(true,true,true,user);
+           this.user.getPermissoes().setCompartilhar(true);
+           this.user.getPermissoes().setExcluir(true);
+           this.user.getPermissoes().setVizualizar(true);
+           this.user.setAdmin(true);
         }
         vc.getBtnCancelar().addActionListener(new ActionListener() {
             @Override
@@ -48,7 +50,9 @@ public class PresenterCadastroUsuario {
                 if(isValidPassword(new String(vc.getPfSenha().getPassword()), new String(vc.getPfConfirmarSenha().getPassword()))){
                     
                     if(vc.getRbAdmin().isSelected())
+                    {
                         user.setAdmin(true);
+                    }
                     user.setNome(vc.getTfNome().getText()); 
                      
                     
@@ -63,8 +67,6 @@ public class PresenterCadastroUsuario {
                         vc.dispose();
                         try {
                             ph.AddTela(new PresenterLogin(ph).getVl());
-                            //ph.getVh().getMiConsultarImagem().setVisible(true);
-                            //ph.getVh().getMiConsultarUsuario().setVisible(true);
                         } catch (Exception ex) {
                             Logger.getLogger(PresenterCadastroUsuario.class.getName()).log(Level.SEVERE, null, ex);
                         }

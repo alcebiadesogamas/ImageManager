@@ -19,22 +19,33 @@ public class PermissaoDAO {
 
         PreparedStatement ps = null;
 
-        if (user == null||img == null) {
+        if (user == null || img == null) {
             throw new Exception("O valor passado não pode ser nulo");
         }
         try {
+            if (user.isAdmin()) {
+                String SQL = "INSERT INTO permissao (idusuario, idimagem, excluir, visualizar, compartilhar)"
+                        + " values (?, ?, ?, ?, ?);";
 
-            String SQL = "INSERT INTO permissao (idusuario, idimagem, excluir, visualizar, compartilhar)"
-                    + " values (?, ?, ?, ?, ?);";
+                ps = conn.prepareStatement(SQL);
+                ps.setInt(1, user.getId());
+                ps.setInt(2, img.getId());
+                ps.setBoolean(3, true);
+                ps.setBoolean(4, true);
+                ps.setBoolean(5, true);
+                ps.executeUpdate();
+            } else {
+                String SQL = "INSERT INTO permissao (idusuario, idimagem, excluir, visualizar, compartilhar)"
+                        + " values (?, ?, ?, ?, ?);";
 
-            ps = conn.prepareStatement(SQL);
-            ps.setInt(1, user.getId());
-            ps.setInt(2, img.getId());
-            ps.setBoolean(3,  user.getPermissoes().isExcluir());
-            ps.setBoolean(4,  user.getPermissoes().isVizualizar());
-            ps.setBoolean(5,  user.getPermissoes().isCompartilhar());
-            ps.executeUpdate();
-
+                ps = conn.prepareStatement(SQL);
+                ps.setInt(1, user.getId());
+                ps.setInt(2, img.getId());
+                ps.setBoolean(3, user.getPermissoes().isExcluir());
+                ps.setBoolean(4, user.getPermissoes().isVizualizar());
+                ps.setBoolean(5, user.getPermissoes().isCompartilhar());
+                ps.executeUpdate();
+            }
         } catch (SQLException sqle) {
             throw new Exception("Erro ao inserir dados " + sqle);
         } finally {
@@ -58,9 +69,9 @@ public class PermissaoDAO {
             String SQL = "select * from permissao where idusuario = ? and idimagem = ?;";
             ps = conn.prepareStatement(SQL);
             ps.setInt(1, aux.getId());
-            ps.setInt(2,img.getId());
+            ps.setInt(2, img.getId());
             rs = ps.executeQuery();
-           
+
             user.getPermissoes().setExcluir(rs.getBoolean(3));
             user.getPermissoes().setVizualizar(rs.getBoolean(4));
             user.getPermissoes().setCompartilhar(rs.getBoolean(5));

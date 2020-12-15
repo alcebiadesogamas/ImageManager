@@ -61,6 +61,7 @@ public class PresenterLogin {
                         }
                         
                         ph.getVh().getJlTrueFalseAdm().setText(adm);
+                        ph.setUsuarioAtual(user);
                         vl.dispose();
 
                     } else {

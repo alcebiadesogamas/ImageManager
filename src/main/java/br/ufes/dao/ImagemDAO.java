@@ -108,4 +108,28 @@ public class ImagemDAO {
             ConexaoFactory.fecharConexao(conn, ps);
         }
     }
+
+
+ public ImagemProxy findImagem(String path) throws Exception {
+        Connection conn = ConexaoFactory.getConexao();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            ps = conn.prepareStatement("select * from imagem where caminho = ?;");
+            ps.setString(1, path);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                return new ImagemProxy(id, path);
+            }
+
+        } catch (SQLException sqle) {
+            throw new Exception(sqle);
+
+        } finally {
+            ConexaoFactory.fecharConexao(conn, ps, rs);
+        }
+       return null;
+    }
 }
