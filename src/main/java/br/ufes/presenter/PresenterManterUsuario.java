@@ -8,6 +8,7 @@ import br.ufes.view.ViewManterUsuario;
 import br.ufes.view.proxy.ImagemProxy;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -22,9 +23,11 @@ public class PresenterManterUsuario {
     private ServiceUsuario su;
     private DefaultTableModel tableModel;
     private ServicePermissao sp;
+    private ArrayList<ImagemProxy> ip;
 
     public PresenterManterUsuario(PresenterHome ph) {
         vmu = new ViewManterUsuario();
+        ip = new ArrayList<>();
         try {
             sp = new ServicePermissao();
             su = new ServiceUsuario();
@@ -59,14 +62,14 @@ public class PresenterManterUsuario {
                     excluir = "Sim";
                     vizualizar = "Sim";
                     compartilhar = "Sim";
-
+                    
                     ServiceImagem temp = new ServiceImagem();
                     try {
-                        temp.readFromDataBase();
+                        ip = temp.readFromDataBase();
                     } catch (Exception ex) {
                         Logger.getLogger(PresenterManterUsuario.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    for (ImagemProxy a : temp.getImagens()) {
+                    for (ImagemProxy a : ip) {
                         tableModel.addRow(new Object[]{
                             user.getNome(),
                             adm,
@@ -81,11 +84,11 @@ public class PresenterManterUsuario {
 
                     ServiceImagem temp = new ServiceImagem();
                     try {
-                        temp.readFromDataBase();
+                        ip = temp.readFromDataBase();
                     } catch (Exception ex) {
                         Logger.getLogger(PresenterManterUsuario.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    for (ImagemProxy a : temp.getImagens()) {
+                    for (ImagemProxy a : ip) {
                         try {
 
                             tableModel.addRow(new Object[]{

@@ -4,6 +4,8 @@ import br.ufes.repository.ImagemRepository;
 
 import br.ufes.view.proxy.ImagemProxy;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -17,6 +19,7 @@ public class ServiceImagem {
     public ServiceImagem() {
         imgRepo = new ImagemRepository();
         imagens = new ArrayList<>();
+        
     }
 
     public ArrayList<ImagemProxy> getImagens() {
@@ -27,14 +30,13 @@ public class ServiceImagem {
 
         ArrayList<ImagemProxy> imgs;
         imgs = imgRepo.readFromDisk();
-        this.imagens = imgs;
+        
         return imgs;
 
     }
 
     public ArrayList<ImagemProxy> readFromDataBase() throws Exception {
         ArrayList<ImagemProxy> imgs = imgRepo.readFromDataBase();
-        this.imagens = imgs;
         return imgs;
     }
     

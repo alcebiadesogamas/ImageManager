@@ -25,7 +25,7 @@ public class ImagemDAO {
         }
         try {
             
-            ps = conn.prepareStatement("SELECT * FROM imagem where caminho = ?");
+            ps = conn.prepareStatement("SELECT * FROM imagem where caminho = ?;");
             ps.setString(1, image.getCaminho());
             rs = ps.executeQuery();
             if(!rs.next()){
