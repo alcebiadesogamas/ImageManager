@@ -4,7 +4,7 @@ import br.ufes.dao.PermissaoDAO;
 import br.ufes.model.Imagem;
 import br.ufes.model.Permissao;
 import br.ufes.model.Usuario;
-import br.ufes.view.proxy.ImagemProxy;
+import br.ufes.proxy.ImagemProxy;
 
 /**
  *

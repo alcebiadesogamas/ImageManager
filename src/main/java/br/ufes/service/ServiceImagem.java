@@ -2,10 +2,8 @@ package br.ufes.service;
 
 import br.ufes.repository.ImagemRepository;
 
-import br.ufes.view.proxy.ImagemProxy;
+import br.ufes.proxy.ImagemProxy;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

@@ -1,4 +1,4 @@
-package br.ufes.view.proxy;
+package br.ufes.proxy;
 
 import br.ufes.model.Imagem;
 

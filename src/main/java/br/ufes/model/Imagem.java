@@ -1,7 +1,7 @@
 package br.ufes.model;
 
 import br.ufes.service.ServiceImagem;
-import br.ufes.view.proxy.IProxyImagem;
+import br.ufes.proxy.IProxyImagem;
 
 /**
  *

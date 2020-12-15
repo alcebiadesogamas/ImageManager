@@ -1,8 +1,8 @@
 package br.ufes.dao;
 
 import br.ufes.model.Imagem;
-import br.ufes.view.proxy.IProxyImagem;
-import br.ufes.view.proxy.ImagemProxy;
+import br.ufes.proxy.IProxyImagem;
+import br.ufes.proxy.ImagemProxy;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

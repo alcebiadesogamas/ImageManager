@@ -1,8 +1,8 @@
 package br.ufes.repository;
 
 import br.ufes.dao.ImagemDAO;
-import br.ufes.view.proxy.IProxyImagem;
-import br.ufes.view.proxy.ImagemProxy;
+import br.ufes.proxy.IProxyImagem;
+import br.ufes.proxy.ImagemProxy;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FilenameFilter;

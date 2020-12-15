@@ -5,7 +5,7 @@ import br.ufes.dao.UsuarioDAO;
 import br.ufes.model.Permissao;
 import br.ufes.model.Usuario;
 import br.ufes.repository.PermissaoRepository;
-import br.ufes.view.proxy.ImagemProxy;
+import br.ufes.proxy.ImagemProxy;
 import java.util.ArrayList;
 
 /**

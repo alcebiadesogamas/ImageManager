@@ -5,7 +5,7 @@ import br.ufes.service.ServiceImagem;
 import br.ufes.service.ServicePermissao;
 import br.ufes.service.ServiceUsuario;
 import br.ufes.view.ViewManterUsuario;
-import br.ufes.view.proxy.ImagemProxy;
+import br.ufes.proxy.ImagemProxy;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;

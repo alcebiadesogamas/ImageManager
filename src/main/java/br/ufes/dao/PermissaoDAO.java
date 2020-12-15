@@ -2,7 +2,7 @@ package br.ufes.dao;
 
 import br.ufes.model.Permissao;
 import br.ufes.model.Usuario;
-import br.ufes.view.proxy.ImagemProxy;
+import br.ufes.proxy.ImagemProxy;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
