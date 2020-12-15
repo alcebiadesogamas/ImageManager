@@ -7,8 +7,8 @@ CREATE TABLE IF NOT EXISTS notificacao(
   CONSTRAINT fk_Notificacao_usuario1
     FOREIGN KEY (idusuario)
     REFERENCES usuario (idusuario)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ;
 
 
@@ -37,11 +37,11 @@ CREATE TABLE IF NOT EXISTS permissao (
    CONSTRAINT fk_usuario_has_imagem_usuario
     FOREIGN KEY (idusuario)
     REFERENCES usuario (idusuario)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT fk_permissao_imagem1
     FOREIGN KEY (idimagem)
     REFERENCES imagem (idimagem)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ;
